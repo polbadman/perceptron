@@ -6,11 +6,15 @@ import java.util.List;
 public class Perceptron {
 
 	/** Learning rate */
-	private double lRate = 0.0;
+	private double lRate = 1.0;
 
 	private double[] weights;
 	
 	private double bias = 0;
+	
+	private int maxEpoch = 30;
+	
+	private int countEpoch = 0;
 
 	/**
 	 * Constructor
@@ -28,15 +32,35 @@ public class Perceptron {
 	}
 	
 	public void train(List<double[]> inputs) {
-		
-		for(double[] input : inputs) {
-			
-			int result = classify(input);
-			
-			System.out.println(result);
-			System.out.println(Arrays.toString(input));
+
+		for (double[] input : inputs) {
+
+			int output = classify(input);
+
+			// If the result is different from expected updated weights
+			if (output != input[input.length - 1]) {
+
+				updateWeightsAndBias(input, output);
+			}
+
 		}
-		
+
+		// acrescenta uma época
+		this.countEpoch++;
+
+		if (countEpoch < this.maxEpoch) {
+			train(inputs);
+		}
+	}
+	
+	protected void updateWeightsAndBias(double[] input, double output) {
+
+		for (int i = 0; i < input.length - 1; i++) {
+
+			weights[i] += (lRate * (input[i] - output) * input[i]);
+		}
+
+		bias += lRate * output;
 	}
 	
 	public int classify(double[] input) {

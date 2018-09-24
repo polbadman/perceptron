@@ -26,5 +26,7 @@ public class Explore {
 		
 		perceptron.train(inputs);
 		
+		
+		
 	}
 }
