@@ -11,7 +11,7 @@ public class Explore {
 
 	public static void main(String[] args) {
 
-		Perceptron perceptron = new Perceptron(2);
+		Perceptron perceptron = new Perceptron();
 		
 		perceptron.setLearning(new MaxIterationsLearning(30));
 

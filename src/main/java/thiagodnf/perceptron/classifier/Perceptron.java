@@ -16,23 +16,23 @@ public class Perceptron {
 	/** Information without attributes */
 	private double bias = -1;
 	
-	/** Define the stopping criteria for traing phase */
+	/** Define the stopping criteria for training phase */
 	private Learning learning;
 
 	/**
 	 * Constructor
 	 */
 	public Perceptron() {
-		this(2);
+		this(2, new MaxIterationsLearning(30));
 	}
 
 	/**
 	 * Constructor
 	 * @param dimensions the size of the weights
 	 */
-	public Perceptron(int dimensions) {
+	public Perceptron(int dimensions, Learning learning) {
 		this.weights = new double[dimensions];
-		this.learning = new MaxIterationsLearning(30);
+		this.learning = learning;
 	}
 	
 	public void train(List<double[]> inputs) {
