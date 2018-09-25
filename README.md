@@ -1,12 +1,12 @@
-<img width="100px" src="https://raw.githubusercontent.com/thiagodnf/perceptron/master/src/main/resources/logo.png" />
-
-# Perceptron
+<img width="400px" src="https://raw.githubusercontent.com/thiagodnf/perceptron/master/src/main/resources/logo.png" />
 
 A simple classifier for data learning and classification
 
 ## What is a perceptron?
 
 The perceptron is an algorithm for supervised learning of binary classifiers (functions that can decide whether an input, represented by a vector of numbers, belongs to some specific class or not)
+
+<img width="100px" src="https://raw.githubusercontent.com/thiagodnf/perceptron/master/src/main/resources/perceptron.png" />
 
 ## Example
 
