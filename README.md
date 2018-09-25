@@ -24,3 +24,10 @@ Found CIRCLE and Point [21.0, 2.0] is CIRCLE
 Found CIRCLE and Point [23.0, 12.0] is CIRCLE
 Found CIRCLE and Point [8.0, 12.0] is CIRCLE
 ```
+
+## Training Size
+
+You have the following options as training size:
+
+- Max Iterations Learning
+- User-Specified Threshold Learning
