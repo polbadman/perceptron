@@ -8,7 +8,11 @@ The perceptron is an algorithm for supervised learning of binary classifiers (fu
 
 ## Example
 
+Consider we have two classes circles and squares as the following image:
+
 <img src="https://raw.githubusercontent.com/thiagodnf/perceptron/master/src/main/resources/example-01.png"/>
+
+The colorful squares and circles are already classified. However, the gray squares and circles dont. Running the perceptron the output for the classification of these points are:
 
 Output:
 
