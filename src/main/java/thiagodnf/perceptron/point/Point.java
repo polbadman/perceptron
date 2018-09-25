@@ -2,18 +2,6 @@ package thiagodnf.perceptron.point;
 
 public class Point {
 
-	public enum Type{
-		NONE(-1),
-		CIRCLE (1),
-		SQUARE (0);
-		
-		public int value;
-		
-		Type(int value) {
-			this.value = value;
-		}
-	}
-	
 	private double x;
 
 	private double y;
@@ -55,6 +43,10 @@ public class Point {
 	}
 
 	public double[] getDimensions() {
-		return new double[] { getX(), getY() };
+		return new double[] { getX(), getY(), getType().value};
+	}
+	
+	public String toString() {
+		return "Point [" + getX() + ", " +  getY() + "] is " + type;
 	}
 }

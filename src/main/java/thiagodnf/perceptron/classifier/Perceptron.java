@@ -1,20 +1,23 @@
 package thiagodnf.perceptron.classifier;
 
-import java.util.Arrays;
 import java.util.List;
+
+import thiagodnf.perceptron.learning.Learning;
+import thiagodnf.perceptron.learning.MaxIterationsLearning;
 
 public class Perceptron {
 
 	/** Learning rate */
-	private double lRate = 1.0;
+	private double lRate = 0.0002;
 
+	/** The Weights */
 	private double[] weights;
 	
-	private double bias = 0;
+	/** Information without attributes */
+	private double bias = -1;
 	
-	private int maxEpoch = 30;
-	
-	private int countEpoch = 0;
+	/** Define the stopping criteria for traing phase */
+	private Learning learning;
 
 	/**
 	 * Constructor
@@ -29,38 +32,38 @@ public class Perceptron {
 	 */
 	public Perceptron(int dimensions) {
 		this.weights = new double[dimensions];
+		this.learning = new MaxIterationsLearning(30);
 	}
 	
 	public void train(List<double[]> inputs) {
 
 		for (double[] input : inputs) {
 
-			int output = classify(input);
+			double output = classify(input);
+			double expected = input[input.length - 1];
 
-			// If the result is different from expected updated weights
-			if (output != input[input.length - 1]) {
+			if (output != expected) {
 
-				updateWeightsAndBias(input, output);
+				updateWeightsAndBias(input, expected, output);
 			}
 
 		}
-
-		// acrescenta uma época
-		this.countEpoch++;
-
-		if (countEpoch < this.maxEpoch) {
+		
+		if( ! learning.isStoppingConditionReached(this, inputs)) {
 			train(inputs);
 		}
 	}
 	
-	protected void updateWeightsAndBias(double[] input, double output) {
+	protected void updateWeightsAndBias(double[] input, double expected, double output) {
 
-		for (int i = 0; i < input.length - 1; i++) {
+		double error = (expected - output);
+		
+		for (int i = 0; i < input.length-1; i++) {
 
-			weights[i] += (lRate * (input[i] - output) * input[i]);
+			weights[i] += (lRate * (error) * input[i]);
 		}
 
-		bias += lRate * output;
+		bias += lRate * error;
 	}
 	
 	public int classify(double[] input) {
@@ -69,6 +72,7 @@ public class Perceptron {
 
 		// The last position is the class. So we have to avoid it
 		for (int i = 0; i < input.length - 1; i++) {
+			
 			result += input[i] * weights[i];
 		}
 
@@ -81,4 +85,19 @@ public class Perceptron {
 		return 0;
 	}
 
+	public double getLRate() {
+		return lRate;
+	}
+
+	public void setLRate(double lRate) {
+		this.lRate = lRate;
+	}
+
+	public Learning getLearning() {
+		return learning;
+	}
+
+	public void setLearning(Learning learning) {
+		this.learning = learning;
+	}
 }
