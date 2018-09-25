@@ -1,3 +1,5 @@
+<img width="100px" src="https://raw.githubusercontent.com/thiagodnf/perceptron/master/src/main/resources/logo.png" />
+
 # Perceptron
 
 A simple classifier for data learning and classification
