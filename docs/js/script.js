@@ -52,10 +52,30 @@ function gameLoop() {
 
 function train(){
 
+    showText("Training...");
+
     perceptron.reset();
     perceptron.setLearningRate(parseFloat($("#learning-rate").val()));
     perceptron.setMaxIterations(parseInt($("#max-iterations").val()))
     perceptron.trainWithIterations(points);
+
+    showText("Done");
+}
+
+function showText(message){
+    
+    var notification = document.querySelector('.mdl-js-snackbar');
+    
+    var data = {
+        message: message,
+        actionHandler: function(event) {
+            notification.MaterialSnackbar.cleanup_()
+        },
+        actionText: 'Close',
+        timeout: 2000
+    };
+
+    notification.MaterialSnackbar.showSnackbar(data);
 }
 
 $(function(){
@@ -98,4 +118,6 @@ $(function(){
     $("#train").click(train)
 
     gameLoop();
+
+    
 })
