@@ -18,6 +18,7 @@ var perceptron = new Perceptron();
 var drawer = new Drawer(ctx);
 var pos = {x: 0, y: 0}
 var dim = {weight: 0, height: 0}
+var autoTraining = false;
 var type = 1;
 var points = [];
 
@@ -52,12 +53,19 @@ function gameLoop() {
     if(perceptron.isReady()){
         drawer.drawLine(1, x1, y1, x2, y2);
     }
+
+    if(autoTraining){
+        perceptron.setLearningRate(parseFloat($("#learning-rate").val()))
+        perceptron.setCountIterations(parseInt($("#max-iterations").val()))
+        perceptron.setMaxIterations(parseInt($("#max-iterations").val()))
+        perceptron.train(points);
+    }
 }
 
 function train(){
 
     perceptron.reset();
-    perceptron.setLearningRate(parseFloat($("#learning-rate").val()));
+    perceptron.setLearningRate(parseFloat($("#learning-rate").val()))
     perceptron.setMaxIterations(parseInt($("#max-iterations").val()))
     perceptron.trainWithIterations(points);
 }
@@ -101,6 +109,17 @@ $(function(){
 
         points.push(new Point(pos.x, pos.y, type));
     })
+
+
+    $('#auto-training').click(function(){
+        autoTraining = $(this).is(':checked');
+
+        if(autoTraining){
+            $(".form-disable").prop("disabled", "disabled");
+        }else{
+            $(".form-disable").prop("disabled", "");
+        }
+    });
 
     $("#circle").click(function(event){
         $("#square").removeClass("btn-success")

@@ -1,12 +1,11 @@
 class Perceptron{
 
     constructor() {
-        this.maxIterations = 300000;
         this.reset();
     }
 
     getRandomDouble(min, max) {
-        return Math.floor(Math.random() * max) + min;
+        return (Math.random() * max) + min;
     }
 
     trainWithIterations(points) {
@@ -44,6 +43,10 @@ class Perceptron{
 
     setLearningRate(lRate){
         this.lRate = lRate;
+    }
+
+    setCountIterations(countIteration){
+        this.countIteration = countIteration;
     }
 
     setMaxIterations(maxIterations){
