@@ -35,3 +35,7 @@ You have the following options as training size:
 
 - Max Iterations Learning
 - User-Specified Threshold Learning
+
+## Where is the javascript version?
+
+Access the "docs" folder or https://perceptron.github.io for visualizing 
