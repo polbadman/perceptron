@@ -1,6 +1,6 @@
 <img width="400px" src="https://raw.githubusercontent.com/thiagodnf/perceptron/master/src/main/resources/logo.png" />
 
-A simple classifier for data learning and classification
+A simple classifier for data learning and classification in Java and Javascript
 
 ## What is a perceptron?
 
