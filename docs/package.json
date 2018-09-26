@@ -21,8 +21,9 @@
 	"license": "MIT",
 	"homepage": "https://perceptron.github.io",
 	"dependencies": {
-		"serve-static": "",
 		"connect": "",
-		"network": ""
+		"network": "",
+		"npm": "^6.4.1",
+		"serve-static": ""
 	}
 }
