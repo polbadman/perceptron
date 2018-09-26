@@ -32,6 +32,8 @@ function gameLoop() {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, dim.width, dim.height);
 
+    drawer.drawAxis();
+    
     $.each(points, function(index, point){
         
         if(point.type == 1){
@@ -41,25 +43,23 @@ function gameLoop() {
         }
     })
 
-    var x1 = 0;
-    var y1 = perceptron.guessY(x1);
+    var x1 = -1.0
+    var y1 = perceptron.guessY(x1)
 
-    var x2 = dim.width;
-    var y2 = perceptron.guessY(x2);
+    var x2 = 1.0
+    var y2 = perceptron.guessY(x2)
 
-    drawer.drawLine(x1, y1, x2, y2);
+    if(perceptron.isReady()){
+        drawer.drawLine(1, x1, y1, x2, y2);
+    }
 }
 
 function train(){
-
-    showText("Training...");
 
     perceptron.reset();
     perceptron.setLearningRate(parseFloat($("#learning-rate").val()));
     perceptron.setMaxIterations(parseInt($("#max-iterations").val()))
     perceptron.trainWithIterations(points);
-
-    showText("Done");
 }
 
 function showText(message){
@@ -94,6 +94,11 @@ $(function(){
             y: event.clientY - rect.top
         };
 
+        // Normalize values;
+
+        pos.x = drawer.normalize(pos.x, 0, dim.width, -1, 1);
+        pos.y = drawer.normalize(pos.y, 0, dim.height, 1, -1);
+
         points.push(new Point(pos.x, pos.y, type));
     })
 
@@ -112,7 +117,7 @@ $(function(){
         $(this).removeClass("btn-outline-success")
         $(this).addClass("btn-success")
 
-        type = 0;
+        type = -1;
     })
 
     $("#train").click(train)

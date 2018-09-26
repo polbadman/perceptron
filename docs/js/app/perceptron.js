@@ -5,6 +5,10 @@ class Perceptron{
         this.reset();
     }
 
+    getRandomDouble(min, max) {
+        return Math.floor(Math.random() * max) + min;
+    }
+
     trainWithIterations(points) {
 
 		do  {
@@ -32,9 +36,9 @@ class Perceptron{
     }
     
     reset(){
-        this.weights = [0, 0];
+        this.weights = [this.getRandomDouble(-1,1), this.getRandomDouble(-1,1)];
         this.lRate = 0.0002;
-        this.bias = -1.0;
+        this.bias = this.getRandomDouble(-1,1);
         this.countIteration = 0;
     }
 
@@ -73,7 +77,7 @@ class Perceptron{
 			return 1;
 		}
 
-		return 0;
+		return -1;
     }
     
     guessY(x){
