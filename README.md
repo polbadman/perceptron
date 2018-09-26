@@ -38,4 +38,4 @@ You have the following options as training size:
 
 ## Where is the javascript version?
 
-Access the "docs" folder or https://perceptron.github.io for visualizing 
+Access the "docs" folder or https://thiagodnf.github.io/perceptron/ for visualizing 
